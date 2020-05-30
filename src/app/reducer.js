@@ -31,6 +31,10 @@ export default function mainReducer(state=initState, action) {
         images: state.images.concat(img),
         loading: false
       };
+    case 'MAIN_IMAGES_FAIL':
+      console.log('Error Name: ', action.error.name);
+      console.log('Error Message: ', action.error.message);
+      break;
     case 'HISTORY_DELETE_IMAGE':
       return {
         ...state,

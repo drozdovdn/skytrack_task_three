@@ -6,8 +6,8 @@ export const getImages = () => {
         .then((response)=> {return response.json()})
         .then((response)=> {return response.data});
       dispatch({type: 'MAIN_IMAGES_SUCCESS', payload: data});
-    }catch (e) {
-      dispatch({type: 'MAIN_IMAGES_FAIL'});
+    }catch (error) {
+      dispatch({type: 'MAIN_IMAGES_FAIL', payload: error});
     }
   }
 }
