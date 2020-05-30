@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import * as Actions from './actions';
 import './style.less';
+import Loading from '../../components/loading';
+
 
 class Main extends Component{
+
+  static propTypes = {
+    getImages: PropTypes.func.isRequired,
+  };
+
   render() {
+    const { url } = this.props.image;
     return (
-        <div className="main">
-          <h1 className="main__title">Загрузите новое изображение</h1>
-          <button className="main__download">Загрузить</button>
-          <div className="main__content">
-            <img src="https://media3.giphy.com/media/xT8qBvH64m71PALBWU/giphy.gif?cid=75f265f1f69815bb84f31e0e83ec82031495c0899f519736&rid=giphy.gif" alt=""/>
-          </div>
+      <div className="main">
+        <h1 className="main__title">Загрузите новое изображение</h1>
+        <button onClick={this.props.getImages} className="main__download">Загрузить</button>
+        <div className="main__content">
+          {
+            this.props.loading ? <Loading /> : <img src={ url } alt=""/>
+          }
         </div>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-
+    image: state.app.image,
+    loading: state.app.loading
   }
 };
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps, Actions)(Main)

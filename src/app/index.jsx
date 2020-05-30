@@ -5,11 +5,16 @@ import * as Actions from './actions';
 import Header from '../components/header';
 import ClientRoutes from '../routing/client-routes';
 import './style.less';
+
 class App extends Component{
 
   static propTypes = {
-
+    getImagesApp: PropTypes.func.isRequired,
   };
+
+  componentDidMount() {
+    this.props.getImagesApp();
+  }
 
   render() {
     return (
@@ -25,7 +30,6 @@ class App extends Component{
 
 const mapStateToProps = (state) => {
   return {
-
   }
 };
 
